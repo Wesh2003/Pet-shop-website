@@ -1,14 +1,14 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
-import CheckoutForm from  '../components/CheckoutForm';
+import CheckoutData from  '../components/CheckoutData';
 
 
 function CheckoutInfoPage({userId}) {
   return (
     <div>
         <NavBar/>
-        <CheckoutForm userId={userId} />
+        <CheckoutData userId={userId} />
         <Footer/>
     </div>
   )

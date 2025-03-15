@@ -19,10 +19,19 @@ function Login({ setIsAuthenticated, setUserId }) {
       const data = await response.json();
 
       if (response.ok) {
-        const { token } = data;
-        localStorage.setItem('access_token', token);
-        setIsAuthenticated(true);
-        navigate('/home');
+        const { access_token, user_id } = data; // Ensure the backend returns both
+
+        if (!access_token || user_id === null || user_id === undefined) {
+          alert('Invalid response from server.');
+          return;
+        }
+
+        localStorage.setItem('access_token', access_token);
+        localStorage.setItem('id', user_id.toString()); // ✅ Store user ID
+
+      setIsAuthenticated(true);
+      setUserId(user_id); // ✅ Update React state
+      navigate('/home');
       } else {
         alert(data.error || 'Login failed');
       }

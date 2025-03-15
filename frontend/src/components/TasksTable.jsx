@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import CategoryFilter from './CategoryFilter';
 // import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ShoppingCart from './ShoppingCartTable'; // Import the ShoppingCart component
+import ShoppingCartTable from './ShoppingCartTable'; // Import the ShoppingCart component
 
 function ProductsTable() {
     const [jobs, setJobs] = useState([]);
@@ -32,19 +32,28 @@ function ProductsTable() {
     const categories = ['All Categories', ...new Set(jobs.map(item => item.title))];
 
     async function handleAddToCart(item) {
-        const userId = localStorage.getItem("id");
+        const userId = Number(localStorage.getItem("id"));
+        const token = localStorage.getItem("access_token"); // Retrieve the JWT token
+
+        console.log("User ID:", userId);
+        console.log("Token:", token);
+        if (!userId || !token) {
+            console.error("User ID or Token is missing!");
+            return;
+        }
+        console.log("Item ID:", item.id);
         const formData = {
-            job_id: item.id,
-            user_id: userId,
+            job_id: Number(item.id),
             // Add other properties as needed
         };
-    
+        console.log("Adding to cart:", formData);
         try {
-            const response = await fetch('./shoppingcart', {
+            const response = await fetch(`http://127.0.0.1:5000/shoppingcart/${userId}`, {
                 method: 'POST',
                 body: JSON.stringify(formData),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}` // Include the JWT token in the request header
                 }
             });
     
@@ -52,7 +61,7 @@ function ProductsTable() {
                 throw new Error('Could not add to cart');
             }
             setJobAddedToCart(true);
-            window.prompt('added')
+            window.prompt('added item to user shopping cart')
         } catch (error) {
             console.error('Error:', error);
             // Handle error appropriately (e.g., display error message to user)
@@ -105,7 +114,7 @@ function ProductsTable() {
                 ))}
             </div>
             {/* Render the ShoppingCart component if an item is added to the cart */}
-            {jobAddedToCart && <ShoppingCart />}
+            {jobAddedToCart && <ShoppingCartTable />}
         </div>
     );
 }

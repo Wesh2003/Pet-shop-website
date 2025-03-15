@@ -2,7 +2,8 @@ from faker import Faker
 import random
 import datetime
 from sqlalchemy.orm import sessionmaker
-from models import db, Users, Job, Admin, Groomer
+from models import db, Users, Job, Admin, Groomer, Shopping_Cart, Receipt, Groomer_Shopping_Cart
+
 from app import app  # Import the Flask app to get the context
 
 fake = Faker()

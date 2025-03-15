@@ -42,3 +42,32 @@ class Job(db.Model):
     description = db.Column(db.String(255))
     cost = db.Column(db.Integer)
     date_added = db.Column(db.DateTime, default=func.current_timestamp())
+
+class Shopping_Cart(db.Model):
+    __tablename__ = 'shopping_carts'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    # title = db.Column(db.String(100), nullable=False)
+    # description = db.Column(db.String(255))
+    # cost = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # Links to Users table
+    job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'), nullable=False)  # Links to Jobs table
+
+    user = db.relationship("Users", backref="shopping_cart")  # Define relationship
+    job = db.relationship("Job", backref="shopping_carts")  # Define relationship
+
+class Receipt(db.Model):
+    __tablename__ = 'receipts'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255))
+    cost = db.Column(db.Integer)
+
+class Groomer_Shopping_Cart(db.Model):
+    __tablename__ = 'groomer_shopping_carts'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255))
+    cost = db.Column(db.Integer)

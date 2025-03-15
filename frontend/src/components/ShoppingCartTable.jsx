@@ -1,73 +1,159 @@
-import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from "react-router-dom";
 
-function ShoppingCart() {
+function ShoppingCartTable() {
   const [cartItems, setCartItems] = useState([]);
   const userId = localStorage.getItem("id");
+  let token = localStorage.getItem("access_token"); // Using let to update after refresh
+  const refreshTokenValue = localStorage.getItem("refresh_token");
 
-  useEffect(() => {
-    fetch(`/shoppingcart/${userId}`)
-      .then(response => response.json())
-      .then(data => {
-        setCartItems(data.cart);
-        console.log(data) // Assuming 'cart' is the key containing your array of items
-      })
-      .catch(error => {
-        console.error('Error fetching shopping cart items:', error);
+  console.log("User ID:", userId);
+  console.log("Token:", token);
+
+  // 🔹 Function to refresh token
+  const refreshToken = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/refresh", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${refreshTokenValue}`,
+          "Content-Type": "application/json",
+        },
       });
-  }, [userId]); // Make sure to include userId as a dependency of useEffect
 
-  const handleDeleteItem = (jobId) => {
-    fetch(`/shoppingcarts/${jobId}`, {
-        method: 'DELETE'
-    })
-    .then(response => {
-        if (response.ok) {
-            // Assuming deletion was successful, remove the item from cartItems
-            setCartItems(prevItems => prevItems.filter(item => item.id !== jobId));
-        } else {
-            throw new Error('Failed to delete item from shopping cart');
+      if (!response.ok) {
+        console.error("Failed to refresh token, logging out...");
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+        return false;
+      }
+
+      const data = await response.json();
+      localStorage.setItem("access_token", data.access_token);
+      token = data.access_token; // Update token for immediate use
+      console.log("Token refreshed!");
+      return true;
+    } catch (error) {
+      console.error("Error refreshing token:", error);
+      return false;
+    }
+  };
+
+  // 🔹 Function to fetch cart items (wrapped in useCallback)
+  const fetchCartItems = useCallback(async () => {
+    if (!userId || !token) {
+      console.error("User ID or Token is missing");
+      return;
+    }
+    try {
+      let response = await fetch(`http://127.0.0.1:5000/shoppingcart/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 401) { // If token is expired, try refreshing
+        console.warn("Token expired, attempting to refresh...");
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          response = await fetch(`http://127.0.0.1:5000/shoppingcart/${userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          });
         }
-    })
-    .catch(error => {
-        console.error('Error deleting item from shopping cart:', error);
-    });
-};
+      }
 
-// return (
-//     <div>
-//         <h2>Shopping Cart</h2>
-//         <ul>
-//             {cartItems.map(item => (
-//                 <li key={item.product_id}>
-//                     <img src={item.image_url} alt={item.name} style={{ width: '100px', height: '100px' }} />
-//                     <p>Name: {item.name}</p>
-//                     <p>Price: ${item.price}</p>
-//                     <button onClick={() => handleDeleteItem(item.product_id)}>Delete</button>
-//                 </li>
-//             ))}
-//         </ul>
-//     </div>
-// );
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch cart: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log("Cart Data:", data);
+      if (!Array.isArray(data.cart)) {
+        console.error("Unexpected data format:", data);
+        return;
+      }
+      if (!data.cart) {
+        console.error("Error: 'cart' property missing in response", data);
+        return;
+      }
+      setCartItems([...data.cart]); // Ensure it's an array
+    } catch (error) {
+      console.error("Error fetching shopping cart items:", error);
+    }
+  }, [userId, token]); // ✅ Dependencies added
+
+  // 🔹 useEffect now includes fetchCartItems
+  useEffect(() => {
+    if (userId && token) {
+      fetchCartItems();
+    }
+  }, [userId, token, fetchCartItems]); // ✅ Fixed dependency issue
+
+  // 🔹 Function to delete an item
+  const handleDeleteItem = async (jobId) => {
+    try {
+      let response = await fetch(`http://127.0.0.1:5000/shoppingcart/${userId}/${jobId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 401) { // Handle expired token
+        console.warn("Token expired, attempting to refresh...");
+        const refreshed = await refreshToken();
+        if (refreshed) {
+          response = await fetch(`http://127.0.0.1:5000/shoppingcart/${userId}/${jobId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          });
+        }
+      }
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to delete item: ${errorText}`);
+      }
+
+      setCartItems(prevItems => prevItems.filter(item => item.id !== jobId));
+      console.log(cartItems);
+      alert("Deleted item from shopping cart");
+    } catch (error) {
+      console.error("Error deleting item from shopping cart:", error);
+    }
+  };
 
   return (
-    <div className = 'shopping-cart-page'>
+    <div className="shopping-cart-page">
       <h2>Shopping Cart</h2>
-      <ul>
-        {cartItems.map(item => (
-          <li key={item.id}>
-            {/* <img src={item.image_url} alt={item.name} style={{ width: '100px', height: '100px' }} /> */}
-            <p>Title: {item.title}</p>
-            <p>Description: {item.description}</p>
-            <p>Cost: ${item.cost}</p>
-            <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      <button className='entry-login-btn'><Link to={`/checkout`} className="link">Proceed to Checkout</Link></button>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul>
+          {cartItems.map((item, index) => (
+            <li key={item.id || index}> {/* Use index as a fallback */}
+              <p>Title: {item.title}</p>
+              <p>Description: {item.description}</p>
+              <p>Cost: ${item.cost}</p>
+              <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      )}
+      <button className="entry-login-btn">
+        <Link to="/checkout" className="link">Proceed to Checkout</Link>
+      </button>
     </div>
   );
 }
 
-export default ShoppingCart;
+export default ShoppingCartTable;
