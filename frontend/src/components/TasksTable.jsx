@@ -5,7 +5,7 @@ import CategoryFilter from './CategoryFilter';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ShoppingCartTable from './ShoppingCartTable'; // Import the ShoppingCart component
 
-function ProductsTable() {
+function TasksTable() {
     const [jobs, setJobs] = useState([]);
     const [jobAddedToCart, setJobAddedToCart] = useState(false);
     // const userId = localStorage.getItem("id");
@@ -119,4 +119,4 @@ function ProductsTable() {
     );
 }
 
-export default ProductsTable;
+export default TasksTable;

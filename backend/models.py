@@ -64,10 +64,21 @@ class Receipt(db.Model):
     description = db.Column(db.String(255))
     cost = db.Column(db.Integer)
 
-class Groomer_Shopping_Cart(db.Model):
-    __tablename__ = 'groomer_shopping_carts'
+class UserPurchasedTasks(db.Model):
+    __tablename__ = 'user_purchased_tasks'
     
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
     cost = db.Column(db.Integer)
+    
+class Groomer_Shopping_Cart(db.Model):
+    __tablename__ = 'groomer_shopping_carts'
+    
+    id = db.Column(db.Integer, primary_key=True)
+
+    groomer_id = db.Column(db.Integer, db.ForeignKey('groomers.id'), nullable=False)  # Links to Groomers table
+    user_purchased_tasks_id = db.Column(db.Integer, db.ForeignKey('user_purchased_tasks.id'), nullable=False)  # Links to User_Purchased_Tasks table
+
+    groomer = db.relationship("Groomer", backref="groomer_shopping_cart")  # Define relationship
+    user_purchased_tasks = db.relationship("UserPurchasedTasks", backref="groomer_shopping_carts")  # Define relationship

@@ -13,6 +13,9 @@ with app.app_context():
     db.session.query(Job).delete()
     db.session.query(Admin).delete()
     db.session.query(Groomer).delete()
+    db.session.query(Shopping_Cart).delete()
+    db.session.query(Receipt).delete()
+    db.session.query(Groomer_Shopping_Cart).delete()
 
     botw = Users(first_name='Harry', last_name='Potter', email='harry@gmail.com', password='HP3223')
     db.session.add(botw)
