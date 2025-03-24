@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import AdminNavBar from "../components/AdminNavBar";
+import Footer from "../components/Footer";
 
 function AdminGroomerListPage() {
   const [groomerItems, setGroomerItems] = useState([]);
-  const AdminId = localStorage.getItem("AdminId");
+  const AdminId = localStorage.getItem("AdminId") || null; // ✅ Ensures null if missing
   let token = localStorage.getItem("admin_access_token"); // Using let to update after refresh
   const refreshTokenValue = localStorage.getItem("admin_refresh_token");
 
@@ -51,7 +53,7 @@ function AdminGroomerListPage() {
           "Content-Type": "application/json",
         },
       });
-
+  
       if (response.status === 401) { // If token is expired, try refreshing
         console.warn("Token expired, attempting to refresh...");
         const refreshed = await refreshToken();
@@ -64,27 +66,26 @@ function AdminGroomerListPage() {
           });
         }
       }
-
+  
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Failed to fetch task items: ${errorText}`);
+        throw new Error(`Failed to fetch groomers: ${errorText}`);
       }
-
+  
       const data = await response.json();
       console.log("Groomer Data:", data);
-      if (!Array.isArray(data.groomer)) {
+  
+      if (!Array.isArray(data)) { // ✅ Check if 'data' itself is an array
         console.error("Unexpected data format:", data);
         return;
       }
-      if (!data.groomer) {
-        console.error("Error: 'user' property missing in response", data);
-        return;
-      }
-      setGroomerItems([...data.groomer]); // Ensure it's an array
+  
+      setGroomerItems(data); // ✅ Directly set 'data' as it is already an array
     } catch (error) {
-      console.error("Error fetching users items:", error);
+      console.error("Error fetching groomers:", error);
     }
   }, [AdminId, token]); // ✅ Dependencies added
+  // ✅ Dependencies added
 
   // 🔹 useEffect now includes fetchCartItems
   useEffect(() => {
@@ -133,6 +134,7 @@ function AdminGroomerListPage() {
 
   return (
     <div className="shopping-cart-page">
+      <AdminNavBar/>
       <h2>All groomers in the system</h2>
       {groomerItems.length === 0 ? (
         <p>There are no groomers in the system.</p>
@@ -148,6 +150,7 @@ function AdminGroomerListPage() {
           ))}
         </ul>
       )}
+      <Footer/>
     </div>
   );
 }

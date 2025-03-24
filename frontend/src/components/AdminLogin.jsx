@@ -27,7 +27,7 @@ function AdminLogin({ setIsAuthenticated, setAdminId }) {
         }
 
         localStorage.setItem('admin_access_token', admin_access_token);
-        localStorage.setItem('id', admin_id.toString()); // ✅ Store user ID
+        localStorage.setItem('AdminId', admin_id.toString()); // ✅ Use "AdminId"
 
       setIsAuthenticated(true);
       setAdminId(admin_id); // ✅ Update React state

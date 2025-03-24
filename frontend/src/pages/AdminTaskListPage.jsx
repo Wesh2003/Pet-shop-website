@@ -53,8 +53,8 @@ function AdminTaskListPage() {
           "Content-Type": "application/json",
         },
       });
-
-      if (response.status === 401) { // If token is expired, try refreshing
+  
+      if (response.status === 401) { // Handle expired token
         console.warn("Token expired, attempting to refresh...");
         const refreshed = await refreshToken();
         if (refreshed) {
@@ -66,27 +66,26 @@ function AdminTaskListPage() {
           });
         }
       }
-
+  
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`Failed to fetch task items: ${errorText}`);
       }
-
+  
       const data = await response.json();
       console.log("Task Data:", data);
-      if (!Array.isArray(data.task)) {
+  
+      if (!Array.isArray(data)) { // ✅ Check if 'data' itself is an array
         console.error("Unexpected data format:", data);
         return;
       }
-      if (!data.task) {
-        console.error("Error: 'task' property missing in response", data);
-        return;
-      }
-      setTaskItems([...data.task]); // Ensure it's an array
+  
+      setTaskItems(data); // ✅ Directly set 'data' as it is already an array
     } catch (error) {
       console.error("Error fetching task items:", error);
     }
-  }, [AdminId, token]); // ✅ Dependencies added
+  }, [AdminId, token]);
+  
 
   // 🔹 useEffect now includes fetchCartItems
   useEffect(() => {

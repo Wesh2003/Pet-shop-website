@@ -53,8 +53,8 @@ function AdminUserListPage() {
           "Content-Type": "application/json",
         },
       });
-
-      if (response.status === 401) { // If token is expired, try refreshing
+  
+      if (response.status === 401) { // Handle expired token
         console.warn("Token expired, attempting to refresh...");
         const refreshed = await refreshToken();
         if (refreshed) {
@@ -66,28 +66,26 @@ function AdminUserListPage() {
           });
         }
       }
-
+  
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Failed to fetch task items: ${errorText}`);
+        throw new Error(`Failed to fetch user items: ${errorText}`);
       }
-
+  
       const data = await response.json();
       console.log("User Data:", data);
-      if (!Array.isArray(data.user)) {
+  
+      if (!Array.isArray(data)) { // ✅ Check if 'data' itself is an array
         console.error("Unexpected data format:", data);
         return;
       }
-      if (!data.user) {
-        console.error("Error: 'user' property missing in response", data);
-        return;
-      }
-      setUserItems([...data.user]); // Ensure it's an array
+  
+      setUserItems(data); // ✅ Directly set 'data' as it is already an array
     } catch (error) {
-      console.error("Error fetching users items:", error);
+      console.error("Error fetching user items:", error);
     }
-  }, [AdminId, token]); // ✅ Dependencies added
-
+  }, [AdminId, token]);
+  
   // 🔹 useEffect now includes fetchCartItems
   useEffect(() => {
     if (AdminId && token) {

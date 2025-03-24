@@ -16,7 +16,10 @@ function NavBar({ isAuthenticated }) {
       <NavLink to="/customercare" className='navbarss'>
         <h4>Customer care</h4>
       </NavLink>
-      {isAuthenticated ? (
+      <NavLink to="/">
+        <FontAwesomeIcon className='user-icon' icon={faSolidUser} />
+      </NavLink>
+      {/* {isAuthenticated ? (
         <NavLink to="/userprofile">
           <FontAwesomeIcon className='user-icon' icon={faSolidUser} />
         </NavLink>
@@ -24,7 +27,7 @@ function NavBar({ isAuthenticated }) {
         <NavLink to="/login">
           <FontAwesomeIcon className='user-icon' icon={faRegularUser} />
         </NavLink>
-      )}
+      )} */}
     </div>
   );
 }

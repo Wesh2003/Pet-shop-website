@@ -22,7 +22,7 @@ with app.app_context():
     db.session.commit()
 
     # Seeding users
-    for _ in range(10):
+    for _ in range(3):
         user = Users(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
@@ -33,7 +33,7 @@ with app.app_context():
         db.session.add(user)
     
     # Seeding admins
-    for _ in range(10):
+    for _ in range(3):
         admin = Admin(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
@@ -44,7 +44,7 @@ with app.app_context():
         db.session.add(admin)
     
     # Seeding groomers
-    for _ in range(10):
+    for _ in range(3):
         groomer = Groomer(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
@@ -55,9 +55,12 @@ with app.app_context():
         db.session.add(groomer)
 
     # Seeding jobs
-    job_titles = ['Wash my dog', 'Walk my dog', 'Take my dog to clinic', 'Trim dog claws', 'Feed dog', 'Shop for dog']
+    job_titles = ['Bathing & Fur Brushing', 'Haircut & Styling', 'Ear cleaning & Teeth brushing',
+                  'Flea & tick treatments', 'Overnight pet boarding', 'In-home pet sitting',
+                  'Private dog walking', 'Group dog walking', 'Vaccination check-up', 
+                  'Puppy training', 'General checkups', 'Spaying and neutering']
     
-    for _ in range(10):
+    for _ in range(20):
         job = Job(
             title=random.choice(job_titles),
             description=fake.sentence(),

@@ -62,12 +62,39 @@ function UserPurchasedTasksTable() {
             }
             setPurchasedJobAddedToCart(true);
             window.prompt('added item to groomer shopping cart')
+            // ✅ After successfully adding, mark it as "taken"
+            await markTaskAsTaken(item.id);
         } catch (error) {
             console.error('Error:', error);
             // Handle error appropriately (e.g., display error message to user)
         }
     }
     
+    async function markTaskAsTaken(taskId) {
+        const token = localStorage.getItem("groomer_access_token");
+    
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/userpurchasedtask/${taskId}/mark-taken`, {
+                method: 'PATCH', // Using PATCH to update existing data
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ taken: true }) // Mark as taken
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to mark task as taken');
+            }
+    
+            // ✅ Update UI: Remove the item from `purchasedJobs`
+            setPurchasedJobs(prevJobs => prevJobs.filter(job => job.id !== taskId));
+    
+            console.log(`Task ${taskId} marked as taken`);
+        } catch (error) {
+            console.error("Error marking task as taken:", error);
+        }
+    }
     
 
     return (
@@ -114,7 +141,7 @@ function UserPurchasedTasksTable() {
                 ))}
             </div>
             {/* Render the ShoppingCart component if an item is added to the cart */}
-            {purchasedJobAddedToCart && <GroomerShoppingCartTable />}
+            {/* {purchasedJobAddedToCart && <GroomerShoppingCartTable />} */}
         </div>
     );
 }

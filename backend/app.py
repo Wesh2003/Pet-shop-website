@@ -276,13 +276,12 @@ def grooomer_refresh_token():
 def get_groomers():
     try:
         groomers = Groomer.query.all()
-        groomer_list = [{
+        return jsonify([{
             "id": groomer.id,
             "first_name": groomer.first_name,
-            "last_name": groomer.last_name
-        } for groomer in groomers]
-
-        return jsonify(groomer_list), 200
+            "last_name": groomer.last_name,
+            "email": groomer.email
+        } for groomer in groomers]), 200  # ✅ Fix: Return array directly
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -607,6 +606,15 @@ def fetch_all_purchased_job_from_collective():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/userpurchasedtask/<int:task_id>/mark-taken', methods=['PATCH'])
+def mark_task_as_taken(task_id):
+    task = UserPurchasedTasks.query.get(task_id)
+    if not task:
+        return jsonify({"error": "Task not found"}), 404
+
+    task.taken = True
+    db.session.commit()
+    return jsonify({"message": "Task marked as taken"})
 
 
 

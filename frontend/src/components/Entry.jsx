@@ -7,7 +7,7 @@ function Entry() {
     
   return (
     <div className = 'entry-page'>
-        <img className = 'entry-image' src='https://t3.ftcdn.net/jpg/02/41/43/18/360_F_241431868_8DFQpCcmpEPVG0UvopdztOAd4a6Rqsoo.jpg' alt='Customer care'/>
+        <img className = 'entry-image' src='https://cdn.mos.cms.futurecdn.net/ASHH5bDmsp6wnK6mEfZdcU.jpg' alt='Customer care'/>
         <div className = 'entry-text'>
             <h1>Welcome to the Pet SHop App</h1>
             <br></br>
@@ -24,7 +24,7 @@ function Entry() {
             <br></br>
             <em>Don't have an account ? <span ><Link to={`/register`} className="span-link">Sign up as a User</Link></span> </em>
             <br></br>
-            <button className='entry-login-btn'><Link to={`/adminloginn`} className="link">Login as an Admin</Link></button>
+            <button className='entry-login-btn'><Link to={`/adminlogin`} className="link">Login as an Admin</Link></button>
             <br></br>
             <br></br>
             <em>Don't have an account ? <span ><Link to={`/adminregister`} className="span-link">Sign up as an Admin</Link></span> </em>
