@@ -145,7 +145,7 @@ function CheckoutData() {
     }
 
     return (
-        <div className="shopping-cart-page">
+        <div className="checkout-cart-page">
             <h2>Checkout Items</h2>
             {cartItems.length === 0 ? (
                 <p>There are no items to checkout.</p>
