@@ -145,7 +145,7 @@ function CheckoutData() {
     }
 
     return (
-        <div className="checkout-cart-page">
+        <div className="shopping-cart-page">
             <h2>Checkout Items</h2>
             {cartItems.length === 0 ? (
                 <p>There are no items to checkout.</p>
@@ -153,7 +153,7 @@ function CheckoutData() {
                 <>
                     <ul>
                         {cartItems.map((item, index) => (
-                            <li key={item.id || index}> {/* Use index as a fallback */}
+                            <li key={item.id || index}  className = "shopping-cart-items"> {/* Use index as a fallback */}
                                 <p>Title: {item.title}</p>
                                 <p>Description: {item.description}</p>
                                 <p>Cost: ${item.cost}</p>

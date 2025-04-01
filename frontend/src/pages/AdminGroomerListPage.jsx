@@ -133,7 +133,7 @@ function AdminGroomerListPage() {
   };
 
   return (
-    <div className="shopping-cart-page">
+    <div className="admin-task-list-page">
       <AdminNavBar/>
       <h2>All groomers in the system</h2>
       {groomerItems.length === 0 ? (
@@ -141,7 +141,7 @@ function AdminGroomerListPage() {
       ) : (
         <ul>
           {groomerItems.map((item, index) => (
-            <li key={item.id || index}> {/* Use index as a fallback */}
+            <li key={item.id || index} className = "shopping-cart-items"> {/* Use index as a fallback */}
               <p>First Name: {item.first_name}</p>
               <p>Last Name: {item.last_name}</p>
               <p>Email: {item.email}</p>

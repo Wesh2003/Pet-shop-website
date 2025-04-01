@@ -140,7 +140,7 @@ function ShoppingCartTable() {
       ) : (
         <ul>
           {cartItems.map((item, index) => (
-            <li key={item.id || index}> {/* Use index as a fallback */}
+            <li key={item.id || index} className = "shopping-cart-items"> {/* Use index as a fallback */}
               <p>Title: {item.title}</p>
               <p>Description: {item.description}</p>
               <p>Cost: ${item.cost}</p>
@@ -149,7 +149,7 @@ function ShoppingCartTable() {
           ))}
         </ul>
       )}
-      <button className="entry-login-btn">
+      <button className="shopping-cart-button">
         <Link to="/checkout" className="link">Proceed to Checkout</Link>
       </button>
     </div>

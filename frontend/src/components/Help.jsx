@@ -5,7 +5,7 @@ function Help(){
 
     return (
         <div>
-            <div className='help-page'>
+            <div className='customer-care'>
                 <div className="Helpp">
                     <h1>Common Customer Issues</h1>
                     <br></br>

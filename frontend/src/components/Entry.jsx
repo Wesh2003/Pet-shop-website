@@ -9,7 +9,7 @@ function Entry() {
     <div className = 'entry-page'>
         <img className = 'entry-image' src='https://cdn.mos.cms.futurecdn.net/ASHH5bDmsp6wnK6mEfZdcU.jpg' alt='Customer care'/>
         <div className = 'entry-text'>
-            <h1>Welcome to the Pet SHop App</h1>
+            <h1>Pet Service Website</h1>
             <br></br>
             <h3>
             Discover the convenience of hiring pet services of all kind using an online platform!

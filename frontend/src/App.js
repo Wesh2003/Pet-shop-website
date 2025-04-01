@@ -56,6 +56,7 @@ function App() {
           <Route exact path="/admintasks" element={<AdminTaskListPage />} />
           <Route exact path="/admingroomers" element={<AdminGroomerListPage />} />
           <Route exact path="/adminusers" element={<AdminUserListPage />} />
+          <Route exact path="/help" element={<HelpPage />} />
         </Routes>
         
         {/* Components that are outside of Routes */}

@@ -5,3 +5,411 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+body {
+    background-image: linear-gradient(to bottom right, blue, rgb(255, 255, 255));
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    
+}
+.sign-heading{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0d0d0d;
+    text-align: center;
+    text-transform: uppercase;
+}
+.signup-labels{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+.signup-inputs {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+.sign-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sign-button:hover {
+    background-color: #218838;
+}
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+/* -----------------------------------------------------------------*/
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    height: 400px;
+    width: 40%;
+    /* max-width: 300px; */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    
+}
+.login-heading{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #282828;
+    text-align: center;
+    text-transform: uppercase;
+}
+.login-form{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+}
+.login-labels{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+.login-inputs {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #2db24a;
+}
+
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    height: 70px;
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    border-radius: 0px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    box-shadow: #333 0px 0px 0px 0px;
+
+
+}
+.navbarss {
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+.tasks-heading {
+    color: yellow;
+
+}
+
+/* Add a hover effect to the navbar links */
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+.shopping-cart-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+} 
+.shopping-cart-page h2{
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+.shopping-cart-button {
+    width: 60%;
+    padding: 10px;
+    background-color: #ffd53e;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.shopping-cart-button:hover {
+    background-color: #f8fc19;
+    color: black;
+} 
+.shopping-cart-items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+
+
+/*Customer care page */
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+
+.customer-care {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.help-button {
+    width: 40%;
+    padding: 10px;
+    background-color: #ff0000;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.help-button .link{
+    color: white;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+
+.entry-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;    
+    margin-top: 20px;
+    /* background-color: rgb(255, 255, 255); */
+}
+.entry-text{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.entry-login-btn{
+    width: 40%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.entry-login-btn .link{
+    color: white;
+}
+.entry-login-btn:hover {
+    background-color: #ff050d;
+    color: white;
+}
+.span-link {
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+
+
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+/*-------------------------------------------------------*/
+
+.admin-task-list-page h2 {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f2ff00;
+    text-align: center;
+}
+

@@ -101,7 +101,7 @@ function UserPurchasedTasksTable() {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-lg-8 col-md-10 col-sm-12 text-center">
-                    <h1>Purchased Tasks to Take on</h1>
+                    <h1 className = "tasks-heading">Purchased Tasks to Take on</h1>
                     <SearchBar purchasedJobs={purchasedJobs} />
                 </div>
                 <CategoryFilter categories={categories} category={selectedCategory} handleCategoryChange={handleCategoryChange} />

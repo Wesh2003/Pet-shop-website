@@ -115,7 +115,7 @@ function AdminMainPage({ isAuthenticated = false, AdminId = null }) {
 
       {/* Register New User */}
       <h2 className="sign-heading">Register New User</h2>
-      <form onSubmit={handleUserSubmit}>
+      <form onSubmit={handleUserSubmit} className = "signup-form">
         <div>
           <label className="signup-labels" htmlFor="first_name">First Name:</label>
           <input className="signup-inputs" type="text" name="first_name" value={formData.first_name} onChange={handleUserChange} required />
@@ -140,7 +140,7 @@ function AdminMainPage({ isAuthenticated = false, AdminId = null }) {
 
       {/* Register New Groomer */}
       <h2 className="sign-heading">Register New Groomer</h2>
-      <form onSubmit={handleGroomerSubmit}>
+      <form onSubmit={handleGroomerSubmit} className = "signup-form">
         <div>
           <label className="signup-labels" htmlFor="first_name">First Name:</label>
           <input className="signup-inputs" type="text" name="first_name" value={formData.first_name} onChange={handleUserChange} required />
@@ -165,7 +165,7 @@ function AdminMainPage({ isAuthenticated = false, AdminId = null }) {
 
       {/* Create New Task */}
       <h2 className="sign-heading">Create New Task</h2>
-      <form onSubmit={handleTaskSubmit}>
+      <form onSubmit={handleTaskSubmit} className = "signup-form">
         <div>
           <label className="signup-labels" htmlFor="title">Title:</label>
           <input className="signup-inputs" type="text" name="title" value={taskFormData.title} onChange={handleTaskChange} required />

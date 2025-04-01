@@ -48,32 +48,38 @@ function AdminLogin({ setIsAuthenticated, setAdminId }) {
 
   return (
     <div>
-      <Container className="mb-5">
-        <h3 className="text-center mt-3 mb-4">Login</h3>
+      <Container className="login-container">
+        <h3 className="login-heading">Login</h3>
         <Form onSubmit={handleSubmit}>
           <Row>
             <Col>
-              <Form.Control
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <Form.Group controlId="formEmail">
+              <Form.Label className="login-labels">Email:</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <Form.Group controlId="formPassword">
+              <Form.Label className="login-labels">Password:</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </Form.Group>
             </Col>
           </Row>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className='login-button'>
             Login Admin
           </Button>
         </Form>

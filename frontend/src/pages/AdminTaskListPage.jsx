@@ -133,7 +133,7 @@ function AdminTaskListPage() {
   };
 
   return (
-    <div className="shopping-cart-page">
+    <div className="admin-task-list-page">
       <AdminNavBar />
       <h2>All tasks in the system</h2>
       {taskItems.length === 0 ? (
@@ -141,7 +141,7 @@ function AdminTaskListPage() {
       ) : (
         <ul>
           {taskItems.map((item, index) => (
-            <li key={item.id || index}> {/* Use index as a fallback */}
+            <li key={item.id || index} className = "shopping-cart-items"> {/* Use index as a fallback */}
               <p>Title: {item.title}</p>
               <p>Description: {item.description}</p>
               <p>Cost: ${item.cost}</p>
