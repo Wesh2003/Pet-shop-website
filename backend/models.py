@@ -40,6 +40,7 @@ class Job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
+    location = db.Column(db.String(255))
     cost = db.Column(db.Integer)
     date_added = db.Column(db.DateTime, default=func.current_timestamp())
 
@@ -62,6 +63,7 @@ class Receipt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
+    location = db.Column(db.String(255))
     cost = db.Column(db.Integer)
 
 class UserPurchasedTasks(db.Model):
@@ -70,6 +72,7 @@ class UserPurchasedTasks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
+    location = db.Column(db.String(255))
     cost = db.Column(db.Integer)
     
 class Groomer_Shopping_Cart(db.Model):

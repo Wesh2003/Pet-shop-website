@@ -108,6 +108,7 @@ function CheckoutData() {
                 const itemData = {
                     title: item.title,
                     description: item.description,
+                    location: item.location,
                     cost: item.cost
                 };
 
@@ -156,6 +157,7 @@ function CheckoutData() {
                             <li key={item.id || index}  className = "shopping-cart-items"> {/* Use index as a fallback */}
                                 <p>Title: {item.title}</p>
                                 <p>Description: {item.description}</p>
+                                <p>Location: {item.location}</p>
                                 <p>Cost: ${item.cost}</p>
                             </li>
                         ))}

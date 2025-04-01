@@ -154,6 +154,7 @@ def get_jobs():
             "id": job.id,
             "title": job.title,
             "description": job.description,
+            "location": job.location,
             "cost": job.cost,
             "date_added": job.date_added.strftime('%Y-%m-%d %H:%M:%S')
         } for job in jobs]
@@ -169,13 +170,14 @@ def add_job():
         data = request.get_json()  # Get JSON data from frontend
 
         # Validate required fields
-        if not all(key in data for key in ["title", "description", "cost"]):
+        if not all(key in data for key in ["title", "description", "location", "cost"]):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Create a new job entry
         new_job = Job(
             title=data["title"],
             description=data["description"],
+            location=data["location"],
             cost=data["cost"],
         )
 
@@ -187,6 +189,7 @@ def add_job():
             "id": new_job.id,
             "title": new_job.title,
             "description": new_job.description,
+            "location": new_job.location,
             "cost": new_job.cost
         }), 201  # 201 Created status
 
@@ -375,6 +378,7 @@ def get_all_jobs_in_groomer_shoppingcart(groomer_id):
             "task_id": entry.user_purchased_tasks_id,
             "title": entry.user_purchased_tasks.title,
             "description": entry.user_purchased_tasks.description,
+            "location": entry.user_purchased_tasks.location,
             "cost": entry.user_purchased_tasks.cost
         } for entry in shopping_cart]
         return jsonify({"cart": shopping_cart_list}), 200
@@ -457,6 +461,7 @@ def get_all_jobs_in_user_shoppingcart(user_id):
             "job_id": entry.job_id,
             "title": entry.job.title,
             "description": entry.job.description,
+            "location": entry.job.location,
             "cost": entry.job.cost
         } for entry in shopping_cart]
         return jsonify({"cart": shopping_cart_list}), 200
@@ -564,13 +569,14 @@ def add_purchased_job_to_collective():
         data = request.get_json()  # Get JSON data from frontend
 
         # Validate required fields
-        if not all(key in data for key in ["title", "description", "cost"]):
+        if not all(key in data for key in ["title", "description", "location","cost"]):
             return jsonify({"error": "Missing required fields"}), 400
 
         # Create a new job entry
         new_purchased_task = UserPurchasedTasks(
             title=data["title"],
             description=data["description"],
+            location=data["location"],
             cost=data["cost"],
         )
 
@@ -582,6 +588,7 @@ def add_purchased_job_to_collective():
             "id": new_purchased_task.id,
             "title": new_purchased_task.title,
             "description": new_purchased_task.description,
+            "location": new_purchased_task.location,
             "cost": new_purchased_task.cost
         }), 201  # 201 Created status
 
@@ -598,6 +605,7 @@ def fetch_all_purchased_job_from_collective():
             "id": purchased_task.id,
             "title": purchased_task.title,
             "description": purchased_task.description,
+            "location": purchased_task.location,
             "cost": purchased_task.cost
         } for purchased_task in purchased_tasks]
 
@@ -634,6 +642,7 @@ def add_purchased_job_to_receipt():
         new_receipt = Receipt(
             title=data["title"],
             description=data["description"],
+            location=data["location"],
             cost=data["cost"],
         )
 
@@ -645,6 +654,7 @@ def add_purchased_job_to_receipt():
             "id": new_receipt.id,
             "title": new_receipt.title,
             "description": new_receipt.description,
+            "location": new_receipt.location,
             "cost": new_receipt.cost
         }), 201  # 201 Created status
 

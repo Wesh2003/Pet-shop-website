@@ -144,6 +144,7 @@ function AdminTaskListPage() {
             <li key={item.id || index} className = "shopping-cart-items"> {/* Use index as a fallback */}
               <p>Title: {item.title}</p>
               <p>Description: {item.description}</p>
+              <p>Location: {item.location}</p>
               <p>Cost: ${item.cost}</p>
               <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
             </li>

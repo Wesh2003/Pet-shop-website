@@ -97,6 +97,7 @@ function TasksTable() {
 
                                         <h5 className="card-title" style={{ color: "black" }}>{item.title}</h5>
                                         <p className="card-text"><strong>Description:</strong> {item.description}</p>
+                                        <p className="card-text"><strong>Location:</strong> {item.location}</p>
                                         <p className="card-text"><strong>Price:</strong> {item.cost}</p>
                                         {/* <p className="card-text"><strong>Quantity:</strong> {item.quantity}</p> */}
                                         {/* <p className="card-text"><strong>Category:</strong> {item.category}</p> */}

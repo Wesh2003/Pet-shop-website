@@ -59,11 +59,14 @@ with app.app_context():
                   'Flea & tick treatments', 'Overnight pet boarding', 'In-home pet sitting',
                   'Private dog walking', 'Group dog walking', 'Vaccination check-up', 
                   'Puppy training', 'General checkups', 'Spaying and neutering']
+    job_locations = ['Nairobi', 'Nakuru', 'Mombasa', 'Kitui', 'Eldoret', 'Kisumu', 'Meru',
+                   'Nyeri', 'Machakos', 'Thika', 'Malindi', 'Lamu', 'Kajiado', 'Embu']
     
     for _ in range(20):
         job = Job(
             title=random.choice(job_titles),
             description=fake.sentence(),
+            location=random.choice(job_locations),
             cost=random.randint(500, 3000),
             date_added=datetime.datetime.now()
         )

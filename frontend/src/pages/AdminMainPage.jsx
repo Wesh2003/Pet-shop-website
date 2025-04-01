@@ -14,6 +14,7 @@ function AdminMainPage({ isAuthenticated = false, AdminId = null }) {
   const [taskFormData, setTaskFormData] = useState({
     title: "",
     description: "",
+    location: "",
     cost: "",
   });
 
@@ -173,6 +174,10 @@ function AdminMainPage({ isAuthenticated = false, AdminId = null }) {
         <div>
           <label className="signup-labels" htmlFor="description">Description:</label>
           <input className="signup-inputs" type="text" name="description" value={taskFormData.description} onChange={handleTaskChange} required />
+        </div>
+        <div>
+          <label className="signup-labels" htmlFor="dlocation">Location:</label>
+          <input className="signup-inputs" type="text" name="location" value={taskFormData.location} onChange={handleTaskChange} required />
         </div>
         <div>
           <label className="signup-labels" htmlFor="cost">Cost:</label>
